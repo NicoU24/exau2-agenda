@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {createRef, useState} from 'react';
 import UserTable from './componentes/UserTable';
 import { v4 as uuidv4 } from 'uuid';
 import AddUserForm from './componentes/AddUserForm';
 import EditUserForm from './componentes/EditUserForm';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import Pdf from 'react-to-pdf';
+
 
 
 function App(){
@@ -15,7 +18,11 @@ function App(){
     
   ]
 
+
+  
+
   const [users, setUsers] = useState(usersData);
+  
 
   const addUser = (user) => {
     user.id = uuidv4()
@@ -57,9 +64,14 @@ function App(){
     setUsers(users.map(user => (user.id === id ? updateUser : user)))
   }
 
+  
+  const ref = React.createRef();
   return(
     <div className="contauner">
       <h1>Examen U2</h1> 
+
+      
+
       <div className="flex-row">
         <div className="flex-large">
           {
@@ -77,17 +89,41 @@ function App(){
             )
           }
         </div>
-        <div className="flex-large">
+
+        <table className="flex-large" id="table-to-xls"  >
           <h3>Ver Registros</h3>
+          
           <UserTable users={users}
            deleteUser={deleteUser}
           
            editRow={editRow}/>
-         
-        </div>
+          
+
+      
+        </table>
+
+        <table>
+        <ReactHTMLTableToExcel className="btn btn-danger" id="table-to-xls" table="table-to-xls" filename="Tabla" sheet="datos" buttonText="Descargar XLS"/>
+        </table>
+
+        <Pdf targetRef={ref} filename="Tabla.pdf">
+        {({ toPdf }) => <button  type="button" class="btn btn-danger" onClick={toPdf}>Descargar PDF</button>}</Pdf>
+      
+
+
+       
       </div>
+   
     </div>
+
+    
+
   );
+  
+  
+
 }
+
+
 
 export default App;

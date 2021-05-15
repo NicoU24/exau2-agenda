@@ -1,7 +1,10 @@
 import React from 'react';
 
+
+
+
 const UserTable = (props) => {
-    console.log(props.users);
+  console.log(props.users);
     return (
         <table>
             <thead>
@@ -32,7 +35,16 @@ const UserTable = (props) => {
                             onClick={()=>{props.deleteUser(user.id)}}
                             >Eliminar</button>
                             </td>
+
+                           
                         </tr>
+
+
+
+
+                
+
+
 
                     )) :(
                         <tr>
@@ -42,9 +54,22 @@ const UserTable = (props) => {
                 }
                 
             </tbody>
+
+                
+        
         </table>
+
+        
+
+        
+
+
       );
+
+     
 }
+
+
  
 export default UserTable;
 <table>
@@ -55,4 +80,7 @@ export default UserTable;
             <th>Actions</th>
         </tr>
     </thead>
+
+   
 </table>
+

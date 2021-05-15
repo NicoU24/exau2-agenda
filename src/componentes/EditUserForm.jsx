@@ -31,7 +31,7 @@ const EditUserForm = (props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>Nombre:</label>
                 <input name='nombre' type="text" {...register("nombre", { required: true, message:"Campo Obligatorio" })} />
-               <span className="text-danger">{errors?.name?.message}</span>
+                <span className="text-danger">{errors?.name?. message}</span>
                
                 <label>Teléfono:</label>
                 <input type='text' name='telefono' {...register("telefono", { required: true, message:"Campo Obligatorio" })} />
